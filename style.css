@@ -1,0 +1,37 @@
+/* .container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+} */
+.row {
+  display: flex;
+  width:100%;
+  justify-content: center;
+}
+
+.box {
+  width:20%;
+  height:5.5rem;
+  justify-content: flex-start;
+  border: 1px solid white;
+  background-color: black;
+}
+
+.player1 {
+  /* //background-color: aqua; */
+  background-image: url(images/tick.png);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.player2 {
+  background-image: url(images/cross.png);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.result {
+  color: red;
+  text-align: center;
+  font-size: 1rem;
+}
