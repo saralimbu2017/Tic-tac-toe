@@ -21,8 +21,15 @@ var trackMoves = function(event) {
   scorePerMove = Number(event.target.id);
   if(isOdd(count)) {
     if(!isGameOver) {
-      event.target.classList.add('player1');
-      scorePlayer1.push(scorePerMove);
+      if(event.target.classList.contains('player1') || event.target.classList.contains('player2') ){
+        count--;
+
+      } else {
+        event.target.classList.add('player1');
+        scorePlayer1.push(scorePerMove);
+      }
+      
+      
     }
     if(scorePlayer1.length == 3) {
       if(isPlayer1Winning()) {
@@ -34,8 +41,12 @@ var trackMoves = function(event) {
     }
   } else {
     if(!isGameOver) {
-      event.target.classList.add('player2');
-      scorePlayer2.push(scorePerMove);
+      if(event.target.classList.contains('player1') || event.target.classList.contains('player2') ){
+        count--;
+      } else {
+        event.target.classList.add('player2');
+        scorePlayer2.push(scorePerMove);
+      }
     }
     if(scorePlayer1.length == 3 && scorePlayer2.length == 3 ) {
       checkResult();
