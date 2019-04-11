@@ -3,7 +3,11 @@ var resultDiv = document.querySelector('.result');
 var resetBtn = document.querySelector('.reset-btn');
 var gameRoundDisplayBtn = document.querySelector('.gameRoundDisplay-btn');
 var containerDiv = document.querySelector('.container');
-
+var menuDiv = document.querySelector('.menu-options');
+var asideDiv = document.querySelector('aside');
+var anAvatarBtn = document.querySelector('.avatar-btn');
+var homeBtn = document.querySelector(".btn-home");
+var menuHomeDiv = "";
 var scorePerMove = 0;
 var scorePlayer1 = [];
 var scorePlayer2 = [];
@@ -15,6 +19,7 @@ var playerNumber = 0;
 var finalScorePlayer1 = 0;
 var finalScorePlayer2 = 0;
 var isGameOver = false;
+var isMenuItemsClicked = false;
 var winningScores = [
                       [1,2,3],[4,5,6],[7,8,9],[1,4,7],[2,5,8],[3,6,9],[1,5,9],[3,5,7]
 ];
@@ -76,6 +81,7 @@ var reset = function() {
   scorePlayer1 = [];
   scorePlayer2 = [];
   count = 0;
+  //isMenuItemsClicked  = true;
 }
 
 var isOdd = function(count) {
@@ -124,23 +130,24 @@ var checkResult = function() {
  
 }
 
-
+var removeAsideMainDivChildElements  = function() {
+  while (menuDiv.firstChild) {
+    menuDiv.removeChild(menuDiv.firstChild);
+  }
+}
 var displayGameRecords = function() {
-  var aside = document.querySelector('aside');
-  aside.remove();
-  var num1 = 2;
-  var num2 = 3;
-  var asideGameRecords = document.createElement('aside');
-  var content = getRecords()
-  var gameRecords = `<h1>Game Records</h1>
-  <ul>${content}</ul>`;
+ removeAsideMainDivChildElements();
   
   var recordDiv = document.createElement('div');
+  var content = getRecords();
+  var gameRecords = `<h1 class="menu-home">Menu</h1><h2>Game Records</h2>
+  <ul>${content}</ul>`;
   recordDiv.innerHTML = gameRecords;
-  asideGameRecords.appendChild(recordDiv);
-  containerDiv.appendChild(asideGameRecords);
-  //aside.removeChild(aside.childNodes[0]);
-// resetBtn.textContent = "hello";
+  //gameRecordsDiv.appendChild(recordDiv);
+  menuDiv.appendChild(recordDiv);
+  isMenuItemsClicked  = true;
+  //asideDiv.appendChild(gameRecordsDiv);
+  //menuHomeDiv = document.querySelector('.menu-home');
 
 }
 
@@ -162,10 +169,68 @@ var getRecords = function() {
   return record;
 }
 
+var displayMainMenu = function() {
+  if(isMenuItemsClicked) {
+    removeAsideMainDivChildElements();
+    var newResetbtn = document.createElement('button');
+    // newResetbtn.addEventListener('click',function(){
+    //   //console.log("hello");
+    //   reset();
+    // });
+    newResetbtn.addEventListener('click',reset);
+    var newGameRoundDisplayBtn = document.createElement('button');
+    newGameRoundDisplayBtn.addEventListener('click',displayGameRecords);
+    var newavatarBtn = document.createElement('button');
+    newavatarBtn.addEventListener('click',chooseAvatars);
+    menuDiv.appendChild(newResetbtn);
+    menuDiv.appendChild(newGameRoundDisplayBtn );
+    menuDiv.appendChild(newavatarBtn);
+    newResetbtn.classList.add('reset-btn');
+    newResetbtn.classList.add('button');
+    newResetbtn.classList.add('dynamic-reset-btn');
+    newResetbtn.textContent = "Reset";
+    newGameRoundDisplayBtn.classList.add('gameRoundDisplay-btn');
+    newGameRoundDisplayBtn.classList.add('button');
+    newGameRoundDisplayBtn.classList.add('dynamic-record-button');
+    newGameRoundDisplayBtn.textContent = "Display Game Records";
+    newavatarBtn.classList.add('avatar-btn');
+    newavatarBtn.classList.add('button');
+    newavatarBtn.classList.add('dynamic-avatar-btn');
+    newavatarBtn.textContent = "Choose Your Avatar";
+  
+   }
+
+}
+var chooseAvatars = function() {
+  removeAsideMainDivChildElements();
+  var avatarDiv = document.createElement('div');
+  avatarDiv.classList.add('avatar');
+  menuDiv.appendChild(avatarDiv );
+ 
+  isMenuItemsClicked  = true;
+}
+
 boxes.forEach(function(box) {
   box.addEventListener('click',trackMoves);
 })
 
 resetBtn.addEventListener('click',reset);
 gameRoundDisplayBtn.addEventListener('click',displayGameRecords);
+homeBtn.addEventListener('click',displayMainMenu);
+//menuHomeDiv.addEventListener('click',displayMainMenu);
+anAvatarBtn.addEventListener('click',chooseAvatars);
 
+
+
+// dynamicResetBtn.addEventListener("click", function(evt) {
+//     // if (evt.target && 
+//     //     evt.target.matches(".element")) {
+//         //doYourStuff();
+//         console.log("hello");
+//    // }
+// }, false);
+//console.log(dynamicResetBtn);
+
+// var doYourStuff = function(){
+//   console.log("hello");
+// }

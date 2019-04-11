@@ -24,6 +24,10 @@ aside {
   width:100%;
   justify-content: center;
 }
+.avatar {
+background-color: #555757;
+height: 10rem;
+}
 
 .box {
   width:20%;
@@ -35,13 +39,13 @@ aside {
 
 .player1 {
   /* //background-color: aqua; */
-  background-image: url(images/tick.png);
+  background-image: url(images/sasuke.png);
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .player2 {
-  background-image: url(images/cross.png);
+  background-image: url(images/naruto.png);
   background-repeat: no-repeat;
   background-position: center;
 }
