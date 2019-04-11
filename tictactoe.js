@@ -29,6 +29,7 @@ var trackMoves = function(event) {
         resultDiv.textContent = `Game Over !!!! Winner: Player1`;
         playerNumber = 1;
         isGameOver = true;
+        count = 0;
       }
     }
   } else {
@@ -46,14 +47,15 @@ var reset = function() {
   boxes.forEach(function(box) {
   if(box.classList.contains('player1')) {
     box.classList.remove('player1');
-      //console.log(scorePlayer1);
   } else if(box.classList.contains('player2')) {
     box.classList.remove('player2');
-     // console.log(scorePlayer2);
   }
   });
+  isGameOver = false;
+  resultDiv.textContent = "";
   scorePlayer1 = [];
   scorePlayer2 = [];
+  count = 0;
 }
 
 var isOdd = function(count) {
@@ -68,6 +70,7 @@ var isPlayer1Winning = function() {
     winningScore = winningScores[i].sort().join('');
     if(winningScore === finalScore){
       return true;
+      
     } 
   }
   return false;
@@ -80,13 +83,16 @@ var checkResult = function() {
     if(winningScore === finalScorePlayer2) {
       resultDiv.textContent = `Game Over !!!! Winner: Player2`;
       playerNumber = 2;
-      isGameOver = true;
+      //isGameOver = true;
+      // count = 0;
       break;
     } else {
       resultDiv.textContent = `Game Over !!!! Draw`;
-      isGameOver = true;
+      //isGameOver = true;
     }
   }
+  isGameOver = true;
+  count = 0;
   game.round = gameCounter;
   game.winner = playerNumber;
   gameRoundRecords.push(game);
