@@ -1,13 +1,16 @@
 var boxes = document.querySelectorAll('.box');
 var resultDiv = document.querySelector('.result');
 var resetBtn = document.querySelector('.reset-btn');
+var gameRoundDisplayBtn = document.querySelector('.gameRoundDisplay-btn');
+var containerDiv = document.querySelector('.container');
+
 var scorePerMove = 0;
 var scorePlayer1 = [];
 var scorePlayer2 = [];
 var count = 0;
 var gameCounter = 0;
-var gameRoundRecords = [];
-var game = {};
+var individualGameRecords = {};
+var overallGameRecords= [];
 var playerNumber = 0;
 var finalScorePlayer1 = 0;
 var finalScorePlayer2 = 0;
@@ -35,7 +38,13 @@ var trackMoves = function(event) {
       if(isPlayer1Winning()) {
         resultDiv.textContent = `Game Over !!!! Winner: Player1`;
         playerNumber = 1;
+        //individualGameRecords.push()
         isGameOver = true;
+        gameCounter++;
+        individualGameRecords = {};
+        individualGameRecords.round = gameCounter;
+        individualGameRecords.player = playerNumber;
+        overallGameRecords.push(individualGameRecords);
         count = 0;
       }
     }
@@ -94,19 +103,63 @@ var checkResult = function() {
     if(winningScore === finalScorePlayer2) {
       resultDiv.textContent = `Game Over !!!! Winner: Player2`;
       playerNumber = 2;
-      //isGameOver = true;
-      // count = 0;
+     // gameCounter++;
+     
+      
       break;
     } else {
       resultDiv.textContent = `Game Over !!!! Draw`;
-      //isGameOver = true;
+     // gameCounter++;
+     playerNumber = 0;
+    
     }
   }
   isGameOver = true;
+  individualGameRecords = {};
+  gameCounter++;
+  individualGameRecords.round = gameCounter;
+  individualGameRecords.player = playerNumber;
+  overallGameRecords.push(individualGameRecords);
   count = 0;
-  game.round = gameCounter;
-  game.winner = playerNumber;
-  gameRoundRecords.push(game);
+ 
+}
+
+
+var displayGameRecords = function() {
+  var aside = document.querySelector('aside');
+  aside.remove();
+  var num1 = 2;
+  var num2 = 3;
+  var asideGameRecords = document.createElement('aside');
+  var content = getRecords()
+  var gameRecords = `<h1>Game Records</h1>
+  <ul>${content}</ul>`;
+  
+  var recordDiv = document.createElement('div');
+  recordDiv.innerHTML = gameRecords;
+  asideGameRecords.appendChild(recordDiv);
+  containerDiv.appendChild(asideGameRecords);
+  //aside.removeChild(aside.childNodes[0]);
+// resetBtn.textContent = "hello";
+
+}
+
+var getRecords = function() {
+  var record = `<li> Round&nbsp;&nbsp; &nbsp;    Winner</li>`;
+  var winner= "";
+  for(var i = 0; i < overallGameRecords.length; i++) {
+    if(overallGameRecords[i].player == 0) {
+      winner = "Draw";
+    }
+    if(overallGameRecords[i].player == 1) {
+      winner = "Player 1";
+    }
+    if(overallGameRecords[i].player == 2) {
+      winner = "Player 2";
+    }
+    record += `<li> ${overallGameRecords[i].round}&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;      ${winner} </li>`;
+  }
+  return record;
 }
 
 boxes.forEach(function(box) {
@@ -114,5 +167,5 @@ boxes.forEach(function(box) {
 })
 
 resetBtn.addEventListener('click',reset);
-
+gameRoundDisplayBtn.addEventListener('click',displayGameRecords);
 
