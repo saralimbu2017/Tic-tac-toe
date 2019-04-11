@@ -3,6 +3,22 @@
   justify-content: center;
   flex-wrap: wrap;
 } */
+.container {
+  display:flex;
+
+}
+header {
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+}
+main {
+  width:60%;
+  background-color: aqua;
+}
+aside {
+  width:35%;
+  background-color: blanchedalmond;
+}
 .row {
   display: flex;
   width:100%;
