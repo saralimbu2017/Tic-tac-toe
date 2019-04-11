@@ -54,13 +54,21 @@ height: 20rem;
 flex-wrap: wrap;
 justify-content: center;
 padding-top: 2rem;
+border: 1px solid white;
 }
 
 .avatarNinja {
   width:30%;
   height:6rem;
-  border: 1px solid white;
-  margin: 0 20px 0 35px;
+  /* border: 1px solid white; */
+  /* margin: 0 10px 0 10px; */
+}
+
+.avatarPlayer {
+  width:30%;
+  height:6rem;
+  /* border: 1px solid white; */
+  margin: 0 30px 0 50px;
 }
 .avatarNaruto {
   background-image: url(images/naruto.png);
@@ -162,16 +170,26 @@ player1 img:hover {
   animation-iteration-count: infinite; 
 }
 
-@keyframes shake {
-  0% { transform: translate(1px, 1px) rotate(0deg); }
-  10% { transform: translate(-1px, -2px) rotate(-1deg); }
-  20% { transform: translate(-3px, 0px) rotate(1deg); }
-  30% { transform: translate(3px, 2px) rotate(0deg); }
-  40% { transform: translate(1px, -1px) rotate(1deg); }
-  50% { transform: translate(-1px, 2px) rotate(-1deg); }
-  60% { transform: translate(-3px, 1px) rotate(0deg); }
-  70% { transform: translate(3px, 1px) rotate(-1deg); }
-  80% { transform: translate(-1px, -1px) rotate(1deg); }
-  90% { transform: translate(1px, 2px) rotate(0deg); }
-  100% { transform: translate(1px, -2px) rotate(-1deg); }
+
+.ninjaNod {
+ 
+  /* position: relative; */
+  -webkit-animation-name: spin; /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 4s; /* Safari 4.0 - 8.0 */
+  animation-name: spin;
+  animation-duration: 2s;
+  
 }
+@-moz-keyframes spin {
+  from { -moz-transform: rotate(0deg); }
+  to { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+  from { -webkit-transform: rotate(0deg); }
+  to { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
+}
+

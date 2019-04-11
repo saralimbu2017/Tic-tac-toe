@@ -36,8 +36,11 @@ var trackMoves = function(event) {
     if(!isGameOver) {
       if(event.target.classList.contains(`${player1}`) || event.target.classList.contains(`${player2}`) ){
         count--;
-
+        event.target.classList.add(`ninjaNod`);
       } else {
+        if(event.target.classList.contains(`ninjaNod`)) {
+          event.target.classList.remove(`ninjaNod`);
+        }
         event.target.classList.add(`${player1}`);
         scorePlayer1.push(scorePerMove);
       }
@@ -62,7 +65,12 @@ var trackMoves = function(event) {
     if(!isGameOver) {
       if(event.target.classList.contains(`${player1}`) || event.target.classList.contains(`${player2}`) ){
         count--;
+        event.target.classList.add(`ninjaNod`);
       } else {
+        if(event.target.classList.contains(`ninjaNod`)) {
+          event.target.classList.remove(`ninjaNod`);
+        }
+        
         event.target.classList.add(`${player2}`);
         scorePlayer2.push(scorePerMove);
       }
@@ -330,10 +338,10 @@ var chooseAvatars = function() {
   playerAvatarsContainer.classList.add('playerAvatarsContainer');
   avatarForPlayer1Div = document.createElement('div');
   //avatarForPlayer1Div.textContent = "Player1";
-  avatarForPlayer1Div.classList.add('avatarPlayer1');
+  avatarForPlayer1Div.classList.add('avatarPlayer');
   avatarForPlayer2Div= document.createElement('div');
   //avatarForPlayer2Div.textContent = "Player2";
-  avatarForPlayer2Div.classList.add('avatarPlayer2');
+  avatarForPlayer2Div.classList.add('avatarPlayer');
   //avatarForPlayer1Btn.addEventListener('click',selectAvatarPlayer1);
   menuDiv.appendChild(avatarDiv );
   playerAvatarsContainer.appendChild(avatarForPlayer1Div);
@@ -341,7 +349,7 @@ var chooseAvatars = function() {
   menuDiv.appendChild(playerAvatarsContainer);
   avatarNinjaDivs = document.querySelectorAll('.avatarNinja')
   avatarNinjaDivs.forEach(function(avatarNinjaDiv){
-     avatarNinjaDiv.addEventListener('click',assignAvatar);
+  avatarNinjaDiv.addEventListener('click',assignAvatar);
     //console.log("hello ninja");
    });
   isMenuItemsClicked  = true;
