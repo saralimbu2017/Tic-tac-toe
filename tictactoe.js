@@ -121,7 +121,7 @@ var checkResult = function() {
     } else {
       resultDiv.textContent = `Game Over !!!! Draw`;
      // gameCounter++;
-     playerNumber = 0;
+     playerNumber = null;
     
     }
   }
@@ -145,7 +145,8 @@ var displayGameRecords = function() {
   
   var recordDiv = document.createElement('div');
   var content = getRecords();
-  var gameRecords = `<h1 class="menu-home">Menu</h1><h2>Game Records</h2>
+  // var gameRecords = `<h1 class="menu-home">Menu</h1><h2>Game Records</h2>
+  var gameRecords = `<h2>&nbsp;&nbsp; &nbsp; Game Records</h2>
   <ul>${content}</ul>`;
   recordDiv.innerHTML = gameRecords;
   //gameRecordsDiv.appendChild(recordDiv);
@@ -160,9 +161,12 @@ var getRecords = function() {
   var record = `<li> Round&nbsp;&nbsp; &nbsp;    Winner</li>`;
   var winner= "";
   for(var i = 0; i < overallGameRecords.length; i++) {
-    if(overallGameRecords[i].player == 0) {
+    if(overallGameRecords[i].player == null) {
       winner = "Draw";
     }
+    // if(overallGameRecords[i].player == 0) {
+    //   winner = "0";
+    // }
     if(overallGameRecords[i].player == 1) {
       winner = "Player 1";
     }
@@ -201,12 +205,13 @@ var displayMainMenu = function() {
     newavatarBtn.classList.add('avatar-btn');
     newavatarBtn.classList.add('button');
     newavatarBtn.classList.add('dynamic-avatar-btn');
-    newavatarBtn.textContent = "Choose Your Avatar";
+    newavatarBtn.textContent = "Choose Your Ninja Avatar";
   
    }
 
 }
 var assignAvatar = function(event) {
+  reset();
   if(event.target.classList.contains('avatarNaruto')) {
     //console.log("naruto");
     if(!avatarForPlayer1Div.classList.contains('avatarNinja')) {
