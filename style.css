@@ -24,11 +24,51 @@ aside {
   width:100%;
   justify-content: center;
 }
+
 .avatar {
+display: flex;
 background-color: #555757;
 height: 10rem;
+flex-wrap: wrap;
+justify-content: center;
+
 }
 
+.avatarNinja {
+  width:30%;
+  height:5rem;
+  border: 1px solid white;
+}
+.avatarNaruto {
+  background-image: url(images/naruto.png);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.avatarSasuke {
+  background-image: url(images/sasuke.png);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.avatarHinata {
+  background-image: url(images/hinata.png);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.avatarGaara {
+  background-image: url(images/gaara.png);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.avatarSakura {
+  background-image: url(images/sakura.png);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.avatarKakashi {
+  background-image: url(images/kakashi.png);
+  background-repeat: no-repeat;
+  background-position: center;
+}
 .box {
   width:20%;
   height:5.5rem;

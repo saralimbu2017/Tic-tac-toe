@@ -201,14 +201,49 @@ var displayMainMenu = function() {
    }
 
 }
+var selectAvatarPlayer1 = function() {
+  
+}
 var chooseAvatars = function() {
   removeAsideMainDivChildElements();
   var avatarDiv = document.createElement('div');
   avatarDiv.classList.add('avatar');
+  var avatarNarutoDiv = document.createElement('div');
+  avatarNarutoDiv.classList.add('avatarNinja');
+  avatarNarutoDiv.classList.add('avatarNaruto');
+  var avatarSasukeDiv = document.createElement('div');
+  avatarSasukeDiv.classList.add('avatarNinja');
+  avatarSasukeDiv.classList.add('avatarSasuke');
+  var avatarHinataDiv = document.createElement('div');
+  avatarHinataDiv.classList.add('avatarNinja');
+  avatarHinataDiv.classList.add('avatarHinata');
+  var avatarSakuraDiv = document.createElement('div');
+  avatarSakuraDiv.classList.add('avatarNinja');
+  avatarSakuraDiv.classList.add('avatarSakura');
+  var avatarGaaraDiv = document.createElement('div');
+  avatarGaaraDiv.classList.add('avatarNinja');
+  avatarGaaraDiv.classList.add('avatarGaara');
+  var avatarKakashiDiv = document.createElement('div');
+  avatarKakashiDiv.classList.add('avatarNinja');
+  avatarKakashiDiv.classList.add('avatarKakashi');
+  avatarDiv.appendChild(avatarNarutoDiv);
+  avatarDiv.appendChild(avatarSasukeDiv);
+  avatarDiv.appendChild(avatarHinataDiv);
+  avatarDiv.appendChild(avatarSakuraDiv);
+  avatarDiv.appendChild(avatarGaaraDiv);
+  avatarDiv.appendChild(avatarKakashiDiv);
+
+  var avatarForPlayer1Btn= document.createElement('button');
+  avatarForPlayer1Btn.textContent = "Player1";
+  avatarForPlayer1Btn.classList.add('avatarPlayer1');
+  avatarForPlayer1Btn.addEventListener('click',selectAvatarPlayer1);
   menuDiv.appendChild(avatarDiv );
+
  
   isMenuItemsClicked  = true;
 }
+
+
 
 boxes.forEach(function(box) {
   box.addEventListener('click',trackMoves);
