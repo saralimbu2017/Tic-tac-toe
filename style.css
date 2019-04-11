@@ -28,15 +28,15 @@ aside {
 .avatar {
 display: flex;
 background-color: #555757;
-height: 10rem;
+height: 13rem;
 flex-wrap: wrap;
 justify-content: center;
-
+padding-top: 2rem;
 }
 
 .avatarNinja {
   width:30%;
-  height:5rem;
+  height:6rem;
   border: 1px solid white;
 }
 .avatarNaruto {
@@ -75,6 +75,11 @@ justify-content: center;
   justify-content: flex-start;
   border: 1px solid white;
   background-color: black;
+}
+.playerAvatarsContainer {
+  display: flex;
+  
+  justify-content: flex-start; 
 }
 
 .player1 {
