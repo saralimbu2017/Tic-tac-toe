@@ -23,6 +23,8 @@ var finalScorePlayer2 = 0;
 var isGameOver = false;
 var isMenuItemsClicked = false;
 var avatarNinjaDivs = "";
+var player1 = "player1";
+var player2 = "player2";
 var winningScores = [
                       [1,2,3],[4,5,6],[7,8,9],[1,4,7],[2,5,8],[3,6,9],[1,5,9],[3,5,7]
 ];
@@ -32,11 +34,11 @@ var trackMoves = function(event) {
   scorePerMove = Number(event.target.id);
   if(isOdd(count)) {
     if(!isGameOver) {
-      if(event.target.classList.contains('player1') || event.target.classList.contains('player2') ){
+      if(event.target.classList.contains(`${player1}`) || event.target.classList.contains(`${player2}`) ){
         count--;
 
       } else {
-        event.target.classList.add('player1');
+        event.target.classList.add(`${player1}`);
         scorePlayer1.push(scorePerMove);
       }
       
@@ -58,10 +60,10 @@ var trackMoves = function(event) {
     }
   } else {
     if(!isGameOver) {
-      if(event.target.classList.contains('player1') || event.target.classList.contains('player2') ){
+      if(event.target.classList.contains(`${player1}`) || event.target.classList.contains(`${player2}`) ){
         count--;
       } else {
-        event.target.classList.add('player2');
+        event.target.classList.add(`${player2}`);
         scorePlayer2.push(scorePerMove);
       }
     }
@@ -73,10 +75,10 @@ var trackMoves = function(event) {
 
 var reset = function() {
   boxes.forEach(function(box) {
-  if(box.classList.contains('player1')) {
-    box.classList.remove('player1');
-  } else if(box.classList.contains('player2')) {
-    box.classList.remove('player2');
+  if(box.classList.contains(`${player1}`)) {
+    box.classList.remove(`${player1}`);
+  } else if(box.classList.contains(`${player2}`)) {
+    box.classList.remove(`${player2}`);
   }
   });
   isGameOver = false;
@@ -211,60 +213,74 @@ var assignAvatar = function(event) {
       avatarForPlayer1Div.classList.add('avatarNaruto');
       avatarForPlayer1Div.classList.add('avatarNinja');
       avatarForPlayer1Div.textContent = "Player1";
+      player1="avatarNaruto";
+      //avatarForPlayer1Div.classList.add('player');
+      
     } else if(!avatarForPlayer2Div.classList.contains('avatarNinja')) {
       avatarForPlayer2Div.classList.add('avatarNaruto');
       avatarForPlayer2Div.classList.add('avatarNinja');
       avatarForPlayer2Div.textContent = "Player2"; 
+      player2="avatarNaruto";
     }
   } else if(event.target.classList.contains('avatarSasuke')) {
     if(!avatarForPlayer1Div.classList.contains('avatarNinja')) {
       avatarForPlayer1Div.classList.add('avatarSasuke');
       avatarForPlayer1Div.classList.add('avatarNinja');
       avatarForPlayer1Div.textContent = "Player1";
+      player1="avatarSasuke";
     } else if(!avatarForPlayer2Div.classList.contains('avatarNinja')) {
       avatarForPlayer2Div.classList.add('avatarSasuke');
       avatarForPlayer2Div.classList.add('avatarNinja');
       avatarForPlayer2Div.textContent = "Player2";
+      player2="avatarSasuke";
     }
   } else if(event.target.classList.contains('avatarSakura')) {
     if(!avatarForPlayer1Div.classList.contains('avatarNinja')) {
       avatarForPlayer1Div.classList.add('avatarSakura');
       avatarForPlayer1Div.classList.add('avatarNinja');
       avatarForPlayer1Div.textContent = "Player1";
+      player1="avatarSakura";
     } else if(!avatarForPlayer2Div.classList.contains('avatarNinja')) {
       avatarForPlayer2Div.classList.add('avatarSakura');
       avatarForPlayer2Div.classList.add('avatarNinja');
       avatarForPlayer2Div.textContent = "Player2";
+      player2="avatarSakura";
     }
   } else if(event.target.classList.contains('avatarHinata')) {
     if(!avatarForPlayer1Div.classList.contains('avatarNinja')) {
       avatarForPlayer1Div.classList.add('avatarHinata');
       avatarForPlayer1Div.classList.add('avatarNinja');
       avatarForPlayer1Div.textContent = "Player1";
+      player1="avatarHinata";
     } else if(!avatarForPlayer2Div.classList.contains('avatarNinja')) {
       avatarForPlayer2Div.classList.add('avatarHinata');
       avatarForPlayer2Div.classList.add('avatarNinja');
       avatarForPlayer2Div.textContent = "Player2";
+      player2="avatarHinata";
     }
   } else if(event.target.classList.contains('avatarGaara')) {
     if(!avatarForPlayer1Div.classList.contains('avatarNinja')) {
       avatarForPlayer1Div.classList.add('avatarGaara');
       avatarForPlayer1Div.classList.add('avatarNinja');
       avatarForPlayer1Div.textContent = "Player1";
+      player1="avatarGaara";
     } else if(!avatarForPlayer2Div.classList.contains('avatarNinja')) {
       avatarForPlayer2Div.classList.add('avatarGaara');
       avatarForPlayer2Div.classList.add('avatarNinja');
       avatarForPlayer2Div.textContent = "Player2";
+      player2="avatarGaara";
     }
   } else if(event.target.classList.contains('avatarKakashi')) {
     if(!avatarForPlayer1Div.classList.contains('avatarNinja')) {
       avatarForPlayer1Div.classList.add('avatarKakashi');
       avatarForPlayer1Div.classList.add('avatarNinja');
       avatarForPlayer1Div.textContent = "Player1";
+      player1="avatarKakashi";
     } else if(!avatarForPlayer2Div.classList.contains('avatarNinja')) {
       avatarForPlayer2Div.classList.add('avatarKakashi');
       avatarForPlayer2Div.classList.add('avatarNinja');
       avatarForPlayer2Div.textContent = "Player2";
+      player2="avatarKakashi";
     }
   }
 
@@ -340,15 +356,3 @@ anAvatarBtn.addEventListener('click',chooseAvatars);
 
 
 
-// dynamicResetBtn.addEventListener("click", function(evt) {
-//     // if (evt.target && 
-//     //     evt.target.matches(".element")) {
-//         //doYourStuff();
-//         console.log("hello");
-//    // }
-// }, false);
-//console.log(dynamicResetBtn);
-
-// var doYourStuff = function(){
-//   console.log("hello");
-// }

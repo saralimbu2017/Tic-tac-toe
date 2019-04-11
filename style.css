@@ -81,16 +81,20 @@ padding-top: 2rem;
   
   justify-content: flex-start; 
 }
-
+.playerOne {
+  background-image: url(images/sasuke.png);
+  background-repeat: no-repeat;
+  background-position: center;
+}
 .player1 {
   /* //background-color: aqua; */
-  background-image: url(images/sasuke.png);
+  background-image: url(images/tick.png);
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .player2 {
-  background-image: url(images/naruto.png);
+  background-image: url(images/cross.png);
   background-repeat: no-repeat;
   background-position: center;
 }
