@@ -29,7 +29,8 @@ var player1 = "player1";
 var player2 = "player2";
 var timerId = null;
 var seconds= 11;
-
+var rightMoveAudio = document.getElementById('audioRightMove');
+var wrongMoveAudio = document.getElementById('audioWrongMove');
 var winningScores = [
                       [1,2,3],[4,5,6],[7,8,9],[1,4,7],[2,5,8],[3,6,9],[1,5,9],[3,5,7]
 ];
@@ -47,11 +48,14 @@ var trackMoves = function(event) {
     if(!isGameOver) {
       if(event.target.classList.contains(`${player1}`) || event.target.classList.contains(`${player2}`) ){
         count--;
+        wrongMoveAudio.play();
+        // wrongMoveAudio.play();
         event.target.classList.add(`ninjaNod`);
       } else {
         if(event.target.classList.contains(`ninjaNod`)) {
           event.target.classList.remove(`ninjaNod`);
         }
+        rightMoveAudio.play();
         event.target.classList.add(`${player1}`);
         scorePlayer1.push(scorePerMove);
       }
@@ -77,12 +81,14 @@ var trackMoves = function(event) {
     if(!isGameOver) {
       if(event.target.classList.contains(`${player1}`) || event.target.classList.contains(`${player2}`) ){
         count--;
+        wrongMoveAudio.play();
+        // wrongMoveAudio.play();
         event.target.classList.add(`ninjaNod`);
       } else {
         if(event.target.classList.contains(`ninjaNod`)) {
           event.target.classList.remove(`ninjaNod`);
         }
-        
+        rightMoveAudio.play();
         event.target.classList.add(`${player2}`);
         scorePlayer2.push(scorePerMove);
       }
