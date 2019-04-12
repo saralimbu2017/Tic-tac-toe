@@ -39,6 +39,9 @@ var trackMoves = function(event) {
   if(count >= 1 && seconds > 0 && !isGameOver) {
     handleStartTimer();
   } 
+  if(seconds == 0 && !isGameOver) {
+    handleStopTimer();
+  }
   scorePerMove = Number(event.target.id);
   if(isOdd(count)) {
     if(!isGameOver) {
@@ -61,7 +64,7 @@ var trackMoves = function(event) {
         playerNumber = 1;
         //individualGameRecords.push()
         isGameOver = true;
-        handleStopTimer();
+        handlePauseTimer();
         gameCounter++;
         individualGameRecords = {};
         individualGameRecords.round = gameCounter;
@@ -149,7 +152,8 @@ var checkResult = function() {
     }
   }
   isGameOver = true;
-  handleStopTimer();
+  //handleStopTimer();
+  handlePauseTimer();
   individualGameRecords = {};
   gameCounter++;
   individualGameRecords.round = gameCounter;
@@ -411,7 +415,23 @@ var handleStartTimer = function() {
   timerId = setInterval(tick,1000);
  }
 }
+var handlePauseTimer = function() {
+  timeLeft = addPrefixZero();
+  //timerSpan.textContent=` Time Left:00: ${timeLeft}`;
+  var timeSecondString = seconds;
+  if(seconds < 10){
+    timeSecondString = `0${seconds}`;
+  }
+  timerSpan.textContent=` Time Left:00: ${timeSecondString}`;
+  clearInterval(timerId);
 
+  
+  timerId=null;
+  //resultDiv.textContent = `Game Over !!!! Time Out`;
+  //resultDiv.textContent = ` `;
+  isGameOver = true;
+
+}
 
 
  var handleStopTimer = function() {
@@ -423,6 +443,7 @@ var handleStartTimer = function() {
   
   timerId=null;
   resultDiv.textContent = `Game Over !!!! Time Out`;
+  //resultDiv.textContent = ` `;
   isGameOver = true;
 
 }
@@ -450,4 +471,5 @@ homeBtn.addEventListener('click',displayMainMenu);
 anAvatarBtn.addEventListener('click',chooseAvatars);
 timerSpan.addEventListener('click',handleStartTimer);
 //timerSpan.addEventListener('click',handleStopTimer);
+
 
