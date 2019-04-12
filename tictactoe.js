@@ -7,9 +7,11 @@ var menuDiv = document.querySelector('.menu-options');
 var asideDiv = document.querySelector('aside');
 var anAvatarBtn = document.querySelector('.avatar-btn');
 var homeBtn = document.querySelector(".btn-home");
+var timerSpan = document.querySelector(".timer");
 var avatarForPlayer1Btn = "";
 var avatarForPlayer2Btn = "";
 var menuHomeDiv = "";
+var timeLeft = null;
 var scorePerMove = 0;
 var scorePlayer1 = [];
 var scorePlayer2 = [];
@@ -25,12 +27,18 @@ var isMenuItemsClicked = false;
 var avatarNinjaDivs = "";
 var player1 = "player1";
 var player2 = "player2";
+var timerId = null;
+var seconds= 11;
+
 var winningScores = [
                       [1,2,3],[4,5,6],[7,8,9],[1,4,7],[2,5,8],[3,6,9],[1,5,9],[3,5,7]
 ];
 
 var trackMoves = function(event) {
   count++;
+  if(count >= 1 && seconds > 0 && !isGameOver) {
+    handleStartTimer();
+  } 
   scorePerMove = Number(event.target.id);
   if(isOdd(count)) {
     if(!isGameOver) {
@@ -53,6 +61,7 @@ var trackMoves = function(event) {
         playerNumber = 1;
         //individualGameRecords.push()
         isGameOver = true;
+        handleStopTimer();
         gameCounter++;
         individualGameRecords = {};
         individualGameRecords.round = gameCounter;
@@ -89,13 +98,19 @@ var reset = function() {
     box.classList.remove(`${player2}`);
   }
   });
+  handleResetTimer();
   isGameOver = false;
   resultDiv.textContent = "";
   scorePlayer1 = [];
   scorePlayer2 = [];
   count = 0;
+  seconds = 30;
+ // var timeLeft = addPrefixZero();
+ 
+  //timerSpan.textContent=` Time Left  00:00`;
   //isMenuItemsClicked  = true;
 }
+
 
 var isOdd = function(count) {
   if(count % 2 !== 0) {
@@ -134,6 +149,7 @@ var checkResult = function() {
     }
   }
   isGameOver = true;
+  handleStopTimer();
   individualGameRecords = {};
   gameCounter++;
   individualGameRecords.round = gameCounter;
@@ -354,7 +370,73 @@ var chooseAvatars = function() {
    });
   isMenuItemsClicked  = true;
 }
+var addPrefixZero = function(seconds) {
+  var timeString = "";
+  var timeStringSecondsLessThanZero ="00";
+  //return seconds;
+  if( seconds <30 ){
+    timeString += seconds.toString();
+    if(timeString.length < 2 ) {
+    //timeString = ``;
+    return `0${timeString}`;
+    } else {
 
+    return `${timeString}`;
+    }
+  }
+  return timeStringSecondsLessThanZero;
+  //console.log(seconds);
+
+  }
+   
+  
+
+
+var tick = function() {
+  seconds--;
+  // timerSpan.textContent= seconds;
+  // timerSpan.textContent=`Time Left: ${seconds}`;
+  if(seconds > 0){
+  timeLeft = addPrefixZero(seconds);
+  timerSpan.textContent=` Time Left:00: ${timeLeft}`;
+  }
+  
+  if(seconds == 0){
+    handleStopTimer();
+  }
+}
+var handleStartTimer = function() {
+  
+  if(timerId===null){
+  timerId = setInterval(tick,1000);
+ }
+}
+
+
+
+ var handleStopTimer = function() {
+  timeLeft = addPrefixZero();
+  timerSpan.textContent=` Time Left:00: ${timeLeft}`;
+  //timerSpan.textContent=` Time Left: ${seconds}`;
+  clearInterval(timerId);
+
+  
+  timerId=null;
+  resultDiv.textContent = `Game Over !!!! Time Out`;
+  isGameOver = true;
+
+}
+
+var handleResetTimer = function() {
+  //timeLeft = addPrefixZero();
+  timerSpan.textContent=` Time Left:00:00`;
+  //timerSpan.textContent=` Time Left: ${seconds}`;
+  clearInterval(timerId);
+  timerId=null;
+  //resultDiv.textContent = `Game Over !!!! Time Out`;
+  //isGameOver = true;
+
+}
 
 
 boxes.forEach(function(box) {
@@ -366,6 +448,6 @@ gameRoundDisplayBtn.addEventListener('click',displayGameRecords);
 homeBtn.addEventListener('click',displayMainMenu);
 //menuHomeDiv.addEventListener('click',displayMainMenu);
 anAvatarBtn.addEventListener('click',chooseAvatars);
-
-
+timerSpan.addEventListener('click',handleStartTimer);
+//timerSpan.addEventListener('click',handleStopTimer);
 

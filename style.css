@@ -47,6 +47,9 @@ aside {
   font-size: 1rem;
   font-weight: 200;
 }
+.timer {
+  background-color: #FF6600;
+}
 .avatar {
 display: flex;
 background-color: #555757;
