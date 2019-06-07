@@ -1,6 +1,6 @@
 ########### Classic Tic-Tac-Toe game with the ninja theme.#############
 
-Introduction
+Introduction ⭐⭐ (Project still on progress, refactoring ....)  ⭐⭐
 
 This game is known  as “Tic Tac Toe”.  It is a 2 player game. Each user has to click the box to make their move.
 
