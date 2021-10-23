@@ -1,27 +1,34 @@
-########### Classic Tic-Tac-Toe game with the ninja theme.#############
+<div id="top"></div>
+<!--
+*** It is a Javascript web application.
+-->
 
-Introduction ⭐⭐ (Project still on progress, refactoring ....)  ⭐⭐
 
-This game is known  as “Tic Tac Toe”.  It is a 2 player game. Each user has to click the box to make their move.
+<!-- PROJECT SHIELDS -->
+<!--
+*** I'm using markdown "reference style" links for readability.
+*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
+*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+-->
 
-Rules
+<div align="center">
+    <h1> Tic-Tac-Toe</h1>
+    <h5>ABOUT THE PROJECT</h2>
+   
+ </div>
+ 
+ <div>
+    <p text-align="justify">
+        Tic-tac-toe is a  Javascript application. Player-1 starts playing the game and both the players make their moves in consecutive turns. The player who makes a straight 3-block chain wins the game. This game is built on the front-end using DOM manipulation logic and validation checks.   
+    </p>
+</div>
 
-•	Each player has to make move turn wise.
-•	Only 6 moves are allowed in this game.
-•	The first player to make three moves in straight lines or diagonal lines win the game.
-•	The timer starts counting as soon as the first user makes the move.
-•	If  each  players don’t make 3 moves within the time frame . The game is over. 
 
-Technologies Used
+<!--Technologies Used-->
+## BUILT WITH
+- Javascript
+- CSS
+- HTML
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-•	Javascript
-•	CSS
-•	HTML
-
-Lessons Learned
-
-•	Handling event listeners to dynamically created dom objects.
-•	CSS Animation
-•	HTML Audio
-•	Importance of specific variable name
 
